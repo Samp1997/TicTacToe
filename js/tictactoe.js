@@ -1,14 +1,14 @@
 //This variable keeps track of whose turn it is.
 let activePlayer = 'X';
 //This array stores an array of moves. we use this to determine win conditions.
-let selectSquares = [];
+let selectedSquares = [];
 
 //this function is for playing an x or o in a square.
-function placeXOrO(squareNumber) {
+function placexOrO(squareNumber) {
     //this condition ensures a square hasent been selected already.
     //The .some() method is used to check each element of the selectSquare array
     //to see if it contains the square number clicked on.
-    if (!selectSquares.some(element => element.includes(squareNumber))) {
+    if (!selectedSquares.some(element => element.includes(squareNumber))) {
         //this variable retreves the HTML element id that was clicked.
         let select = document.getElementById(squareNumber);
         if (activePlayer === 'X') {
@@ -52,9 +52,9 @@ function placeXOrO(squareNumber) {
             //A random number is between 0 - 8 is slected
             pickASquare = String(Math.floor(Math.random() * 9));
 
-            if (placeXOrO(pickASquare)) {
+            if (placexOrO(pickASquare)) {
                 //this line calls the function
-                placeXOrO(pickASquare);
+                placexOrO(pickASquare);
                 //this changes our coolean and ends the loop
                 success = true;
             };
@@ -97,7 +97,7 @@ function placeXOrO(squareNumber) {
 
        else if (arrayIncludes('0O', '40', '80')) { drawWinLine(100, 100, 520, 520) }
 
-       else if (selectSquares.length >= 9) {
+       else if (selectedSquares.length >= 9) {
         audio('./media/tie.mp3');
 
         setTimeout(function () { resetGame(); }, 500);
@@ -105,9 +105,9 @@ function placeXOrO(squareNumber) {
     
 
     function arrayIncludes(squareA, squareB, squareC) {
-        const a = selectSquares.includes(squareA);
-        const b = selectSquares.includes(squareB);
-        const c = selectSquares.includes(squareC);
+        const a = selectedSquares.includes(squareA);
+        const b = selectedSquares.includes(squareB);
+        const c = selectedSquares.includes(squareC);
 
         if (a === true && b === true && c === true) { return true; }
 
@@ -120,7 +120,7 @@ function disableClick() {
 }
 
 function audio(audioURL) {
-    let Audio = new Audio(audioURL);
+    let audio = new audio(audioURL);
     audio.play();
 }
 
@@ -148,7 +148,7 @@ function animateLineDrawing() {
     
     const animationLoop = requestAnimationFrame(animateLineDrawing);
 
-    c.clearsReact(0, 0, 608, 608);
+    c.clearRect(0, 0, 608, 608);
 
     c.beginPath();
 
