@@ -120,7 +120,7 @@ function disableClick() {
 }
 
 function audio(audioURL) {
-    let audio = new audio(audioURL);
+    let audio = new Audio(audioURL);
     audio.play();
 }
 
@@ -205,5 +205,5 @@ function resetGame() {
         square.style.backgroundImage = '';
     }
     //this resets our array so it is empty and we can start over.
-    selectSquares = [];
+    selectedSquares = [];
 }
